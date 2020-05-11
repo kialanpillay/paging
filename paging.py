@@ -85,17 +85,15 @@ def OPT(size, pages):
                 mem.insert(u,page)
                 npfault+=1
             n+=1
-            #print(mem, "P", page, "N", npfault)
+
     return npfault
 
 def main():
-    seed(1)
+    seed(2020)
     pages = ""
-    for _ in range(8):
+    for _ in range(32):
 	       pages += str(randint(0, 9))
 
-    pages = "7012030423032"
-    pages = "8562535423532625"
     size = int(sys.argv[1])
     print ('FIFO', FIFO(size,pages), 'page faults.')
     print ('LRU', LRU(size,pages), 'page faults.')
