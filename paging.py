@@ -1,6 +1,9 @@
 # OS Assignment 1 - Memory Management
 # Kialan Pillay
 # PLLKIA010
+# Python Version 2
+# Line 102 - Modulate N to change the number of pages generated
+
 from random import seed
 from random import randint
 import sys
