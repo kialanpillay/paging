@@ -19,7 +19,7 @@ def FIFO(size, pages):
             i+=1
             npfault+=1
         else:
-            if(page not in mem):
+            if page not in mem:
                 q = queue.pop(0)
                 queue.append(page)
                 j = mem.index(q)
@@ -72,7 +72,7 @@ def OPT(size, pages):
             n+=1
             npfault+=1
         else:
-            if(page not in mem):
+            if page not in mem:
                 usage = []
                 for m in mem:
                     if m in page_list[n::]:
