@@ -96,14 +96,14 @@ def OPT(size, pages):
 def main():
     seed(2020)
     pages = ""
-    for _ in range(32):
+    N = 128
+    for _ in range(N):
 	       pages += str(randint(0, 9))
 
-    #pages = "856253542353262568562342"
     size = int(sys.argv[1])
-    print ('FIFO', FIFO(size,pages), 'page faults.')
-    print ('LRU', LRU(size,pages), 'page faults.')
-    print ('OPT', OPT(size,pages), 'page faults.')
+    print 'FIFO', FIFO(size,pages), 'page faults.'
+    print 'LRU', LRU(size,pages), 'page faults.'
+    print 'OPT', OPT(size,pages), 'page faults.'
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
