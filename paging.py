@@ -30,12 +30,37 @@ def FIFO(size, pages):
     return npfault
 
 def LRU(size, pages):
-    return size
+    page_list = list(pages)
+    mem = []
+    usage = []
+    i = 0
+    npfault = 0
+
+    for page in page_list:
+        if i<size:
+            mem.append(page)
+            if page in usage:
+                usage.remove(page)
+            usage.insert(0,page)
+            i+=1
+            npfault+=1
+        else:
+            if page in usage:
+                usage.remove(page)
+            usage.insert(0,page)
+
+            if page not in mem:
+                q = usage.pop(-1)
+                j = mem.index(q)
+                mem.pop(j)
+                mem.insert(j,page)
+                npfault+=1
+
+    return npfault
 
 def OPT(size, pages):
     page_list = list(pages)
     mem = []
-    queue = []
     i = 0
     n = 0
     npfault = 0
@@ -43,7 +68,6 @@ def OPT(size, pages):
     for page in page_list:
         if i<size:
             mem.append(page)
-            queue.append(page)
             i+=1
             n+=1
             npfault+=1
@@ -51,13 +75,17 @@ def OPT(size, pages):
             if(page not in mem):
                 usage = []
                 for m in mem:
-                    usage.append(page_list[n::].count(m))
-                u = usage.index(min(usage))
+                    if m in page_list[n::]:
+                        usage.append(page_list[n::].index(m))
+                    else:
+                        usage.append(10000)
+
+                u = usage.index(max(usage))
                 mem.pop(u)
                 mem.insert(u,page)
                 npfault+=1
             n+=1
-
+            #print(mem, "P", page, "N", npfault)
     return npfault
 
 def main():
@@ -66,7 +94,8 @@ def main():
     for _ in range(8):
 	       pages += str(randint(0, 9))
 
-    pages = "85625354"
+    pages = "7012030423032"
+    pages = "8562535423532625"
     size = int(sys.argv[1])
     print ('FIFO', FIFO(size,pages), 'page faults.')
     print ('LRU', LRU(size,pages), 'page faults.')
