@@ -14,10 +14,12 @@ def FIFO(size, pages):
 
     for page in page_list:
         if i<size:
-            mem.append(page)
-            queue.append(page)
-            i+=1
-            npfault+=1
+            if page not in mem:
+                mem.append(page)
+                queue.append(page)
+                i+=1
+                npfault+=1
+
         else:
             if page not in mem:
                 q = queue.pop(0)
@@ -38,17 +40,18 @@ def LRU(size, pages):
 
     for page in page_list:
         if i<size:
-            mem.append(page)
             if page in usage:
                 usage.remove(page)
             usage.insert(0,page)
-            i+=1
-            npfault+=1
+            if page not in mem:
+                mem.append(page)
+                i+=1
+                npfault+=1
+
         else:
             if page in usage:
                 usage.remove(page)
             usage.insert(0,page)
-
             if page not in mem:
                 q = usage.pop(-1)
                 j = mem.index(q)
@@ -67,10 +70,12 @@ def OPT(size, pages):
 
     for page in page_list:
         if i<size:
-            mem.append(page)
-            i+=1
+            if page not in mem:
+                mem.append(page)
+                i+=1
+                npfault+=1
             n+=1
-            npfault+=1
+
         else:
             if page not in mem:
                 usage = []
@@ -94,6 +99,7 @@ def main():
     for _ in range(32):
 	       pages += str(randint(0, 9))
 
+    #pages = "856253542353262568562342"
     size = int(sys.argv[1])
     print ('FIFO', FIFO(size,pages), 'page faults.')
     print ('LRU', LRU(size,pages), 'page faults.')
