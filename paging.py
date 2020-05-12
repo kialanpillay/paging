@@ -2,7 +2,6 @@
 # Kialan Pillay
 # PLLKIA010
 # Python Version 2
-# Line 102 - Modulate N to change the number of pages generated
 
 from random import seed
 from random import randint
@@ -99,10 +98,9 @@ def OPT(size, pages):
 def main():
     seed(2020)
     pages = ""
-    N = 128
+    N = eval(raw_input('Enter N - the number of pages to generate.\n'))
     for _ in range(N):
-	       pages += str(randint(0, 9))
-
+	       pages += str(randint(0, 9))           
     size = int(sys.argv[1])
     print 'FIFO', FIFO(size,pages), 'page faults.'
     print 'LRU', LRU(size,pages), 'page faults.'
