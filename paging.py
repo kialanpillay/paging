@@ -102,6 +102,9 @@ def main():
     for _ in range(N):
 	       pages += str(randint(0, 9))
     size = int(sys.argv[1])
+    if(size > 7 or size < 1):
+        print('Error. number of pages parameter not in range [1,7]')
+        exit()
     print 'FIFO', FIFO(size,pages), 'page faults.'
     print 'LRU', LRU(size,pages), 'page faults.'
     print 'OPT', OPT(size,pages), 'page faults.'
@@ -109,7 +112,5 @@ def main():
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print ('Usage: python paging.py [number of pages]')
-    elif sys.argv[1] < 1 or sys.argv[1] > 7:
-        print ('number of pages in range [1,7]')
     else:
         main()
