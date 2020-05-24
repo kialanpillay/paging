@@ -29,8 +29,7 @@ def FIFO(size, pages):
                 q = queue.pop(0)
                 queue.append(page)
                 j = mem.index(q)
-                mem.pop(j)
-                mem.insert(j,page)
+                mem[j] = page
                 npfault+=1
 
     return npfault
@@ -59,8 +58,7 @@ def LRU(size, pages):
             if page not in mem:
                 q = usage.pop(-1)
                 j = mem.index(q)
-                mem.pop(j)
-                mem.insert(j,page)
+                mem[j] = page
                 npfault+=1
 
     return npfault
@@ -84,8 +82,7 @@ def OPT(size, pages):
             if page not in mem:
                 usage = [page_list[n::].index(m) if m in page_list[n:] else 100000000 for m in mem]
                 u = usage.index(max(usage))
-                mem.pop(u)
-                mem.insert(u,page)
+                mem[u] = page
                 npfault+=1
             n+=1
 
