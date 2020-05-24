@@ -82,13 +82,7 @@ def OPT(size, pages):
 
         else:
             if page not in mem:
-                usage = []
-                for m in mem:
-                    if m in page_list[n::]:
-                        usage.append(page_list[n::].index(m))
-                    else:
-                        usage.append(100000000)
-
+                usage = [page_list[n::].index(m) if m in page_list[n:] else 100000000 for m in mem]
                 u = usage.index(max(usage))
                 mem.pop(u)
                 mem.insert(u,page)
