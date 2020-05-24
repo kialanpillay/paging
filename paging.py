@@ -2,6 +2,8 @@
 # Kialan Pillay
 # PLLKIA010
 # Python Version 2
+# Usage: python paging.py [number of page frames (1-7)]
+# Input Prompt for Length of Page Reference String (N)
 
 from random import seed
 from random import randint
@@ -111,6 +113,6 @@ def main():
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print ('Usage: python paging.py [number of pages]')
+        print ('Usage: python paging.py [number of page frames]')
     else:
         main()
