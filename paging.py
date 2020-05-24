@@ -93,13 +93,13 @@ def main():
     pages = ""
     N = eval(raw_input('Enter N - the number of pages to generate.\n'))
     if(N < 1):
-        print('Error. N < 1')
+        print 'Error. N < 1'
         exit()
     for _ in range(N):
 	       pages += str(randint(0, 9))
     size = int(sys.argv[1])
     if(size > 7 or size < 1):
-        print('Error. number of pages parameter not in range [1,7]')
+        print 'Error. number of pages parameter not in range [1,7]'
         exit()
     print 'FIFO', FIFO(size,pages), 'page faults.'
     print 'LRU', LRU(size,pages), 'page faults.'
@@ -107,6 +107,6 @@ def main():
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print ('Usage: python paging.py [number of page frames]')
+        print 'Usage: python paging.py [number of page frames]'
     else:
         main()
