@@ -87,7 +87,7 @@ def OPT(size, pages):
                     if m in page_list[n::]:
                         usage.append(page_list[n::].index(m))
                     else:
-                        usage.append(10000)
+                        usage.append(100000000)
 
                 u = usage.index(max(usage))
                 mem.pop(u)
