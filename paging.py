@@ -92,6 +92,9 @@ def main():
     seed(2020)
     pages = ""
     N = eval(raw_input('Enter N - the number of pages to generate.\n'))
+    if(N < 1):
+        print('Error. N < 1')
+        exit()
     for _ in range(N):
 	       pages += str(randint(0, 9))
     size = int(sys.argv[1])
