@@ -102,6 +102,7 @@ def main():
     if(size > 7 or size < 1): #Validation
         print 'Error. number of pages parameter not in range [1,7]'
         exit()
+    print 'Generated Page Reference String:', ' '.join(pages)
     print 'FIFO', FIFO(size,pages), 'page faults.'
     print 'LRU', LRU(size,pages), 'page faults.'
     print 'OPT', OPT(size,pages), 'page faults.'
