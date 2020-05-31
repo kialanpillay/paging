@@ -90,7 +90,6 @@ def OPT(size, pages):
     return npfault
 
 def main():
-    seed(2020)
     pages = ""
     N = eval(raw_input('Enter N - the number of pages to generate.\n'))
     if(N < 1): #Validation Check
